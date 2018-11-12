@@ -380,4 +380,5 @@ platform10 = Platform(g, 230, 200, '/home/shark/Minh/Mr_Stickman/P1.gif')
 
 sf = Stickfigure(g)
 
+
 g.mainloop()
