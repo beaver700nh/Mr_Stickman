@@ -259,6 +259,26 @@ class Stickfigure(Sprite):
         self.coordinates.x2 = xy[0] + 27
         self.coordinates.y2 = xy[1] + 27
         return self.coordinates
+
+    def l_animate(self):
+        if self.moving_left():
+            if self.jumping():
+                self.game.canvas.itemconfig(self.image, \
+                                            image=self.l_images[2])
+
+            else:
+                self.game.canvas.itemconfig(self.image, \
+                                            image=self.l_images[self.cur_img])
+
+    def r_animate(self):
+        if self.moving_right():
+            if self.jumping():
+                self.game.canvas.itemconfig(self.image, \
+                                            image=self.r_images[2])
+
+            else:
+                self.game.canvas.itemconfig(self.image, \
+                                            image=self.r_images[self.cur_img])
     
     def animate(self):
         if self.moving() and not self.jumping() and \
@@ -272,23 +292,8 @@ class Stickfigure(Sprite):
             if self.cur_img <= 0:
                 self.img_step = 1
 
-        if self.moving_left():
-            if self.jumping():
-                self.game.canvas.itemconfig(self.image, \
-                                            image=self.l_images[2])
-
-            else:
-                self.game.canvas.itemconfig(self.image, \
-                                            image=self.l_images[self.cur_img])
-
-        elif self.moving_right():
-            if self.jumping():
-                self.game.canvas.itemconfig(self.image, \
-                                            image=self.r_images[2])
-
-            else:
-                self.game.canvas.itemconfig(self.image, \
-                                            image=self.r_images[self.cur_img])
+        self.l_animate()
+        self.r_animate()
 
     def move(self):
         self.animate()
